@@ -1,3 +1,4 @@
+import validator from 'validator';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "./css/Style.css";
@@ -7,8 +8,38 @@ import axios from "axios";
 import "./css/Signup_module.css"
 
 const AdminCandidateUpdate = () => {
-  const navigate = useNavigate("");
-  const [formData, setFormData] = useState({});
+   const navigate = useNavigate("");
+
+  const [formData, setFormData] = useState({
+    pincode:'',
+    aadhaar:''
+  });
+  const [formError,setFormError]=useState({
+    zipError:'',
+    aadhaarError:''  
+})
+const {pinCode, aadhaar}=formData;
+const {zipError, aadhaarError}=formError;
+const onChange = e => {
+  setFormData({...formData,[e.target.name]:e.target.value})
+  setFormError({...formError,zipError:'',aadharError:''})    
+
+}
+const onSubmit = async e => {
+  e.preventDefault();
+  if (validator.isEmpty(pinCode)){
+     // setFormError({...formError,zipError:"Please enter pin code."})
+     setFormError(prevState=>{return{...prevState,zipError:"Please enter pin code."}} )
+  }
+  if (validator.isEmpty(aadhaar)){
+     setFormError(prevState=>{return{...prevState,aadharError:"Please enter aadhar number."}} )
+  }
+
+  if(zipError==='' && aadhaarError ===''){
+      alert("Form is good to submit.")
+  }
+}
+
   let username=  localStorage.getItem("username")
   const [isSubmitted, setIsSubmitted] = useState(false);
   const goBack = () => {
@@ -18,10 +49,10 @@ const AdminCandidateUpdate = () => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value ,["username"]:username});
   }
-
+  
+ 
   function handleSubmit(event) {
     event.preventDefault();
-    
 
     axios.post("http://localhost:3001/admin_empupdate", formData)
       .then((response) => {
@@ -238,16 +269,19 @@ const AdminCandidateUpdate = () => {
                 Pincode
               </label>
               <input
-                type="number"
+                 type="input"
                 name="pincode"
                 className="col-7 demo"
-                placeholder="577201"
-                onChange={handleInputChange}
+                placeholder="Enter pincode"
+                // onChange={handleInputChange}
                 id="pincode"
+                value={pinCode}
+                onChange={(e)=>onChange(e)}
                 minlength={4}
                 maxlength={6}
-              />
+              ></input>
             </div>
+            <div className="err_class">{zipError ? zipError : ''}</div>
             <div className="row demo1">
               <label
                 htmlFor="password"
@@ -290,16 +324,18 @@ const AdminCandidateUpdate = () => {
                 Aadhaar Number
               </label>
               <input
-                type="number"
+                type="input"
                 name="Aadhaar_number"
                 id="Aadhaar_number"
-                maxlength={16}
+                value={aadhaar}
+                maxlength={12}
                 className="col-7 demo"
-                onChange={handleInputChange}
+                onChange={(e)=>onChange(e)}
                 placeholder="Aadhaar Number"
-                //required
+                required
               />
             </div>
+            <div className="err_class">{aadhaarError ? aadhaarError : ''}        </div>
            < div className="row demo1">
               <label
                 htmlFor="pan number"
@@ -347,7 +383,7 @@ const AdminCandidateUpdate = () => {
                 id="date"
               />
             </div> */}
-            <div className="row demo1">
+            {/* <div className="row demo1">
               <label
                 htmlFor="comments"
                 className="col-5 text-center signup-input"
@@ -362,7 +398,7 @@ const AdminCandidateUpdate = () => {
                 // placeholder="Your Inputs"
                 id="comments"
               />
-            </div>
+            </div> */}
             <div className="row demo1">
               <label
                 htmlFor="puc"
