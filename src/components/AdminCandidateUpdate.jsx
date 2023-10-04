@@ -21,6 +21,7 @@ const AdminCandidateUpdate = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
+    
 
     axios.post("http://localhost:3001/admin_empupdate", formData)
       .then((response) => {
