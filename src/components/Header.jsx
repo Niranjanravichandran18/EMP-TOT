@@ -33,7 +33,6 @@ import Axios from 'axios';
     });
 }, []);
 
-
 return (
     <div>
       <button onClick={goBack} className="goback">
@@ -61,8 +60,6 @@ return (
         </div>
       </header>
       
-
-
       <div className="main">
          <div className="box-container">
           <div className="box box1">
@@ -111,10 +108,7 @@ return (
         </div>
       </div>
     </div>
-
-
   );
-
 };
 
 export default Header;
