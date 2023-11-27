@@ -25,7 +25,7 @@ const TaskList = () => {
     }
   };
 
-  const removeTask = (taskId) => {
+const removeTask = (taskId) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
   };
