@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Buffer } from 'buffer';
 var AWS = require("aws-sdk");
 
-
 const config = {
   bucketName: 'emptotbucket',
   region: 'us-east-1',
