@@ -4,13 +4,11 @@ import axios from "axios";
 
 function Resume() {
   const [file, setFile] = useState(null);
-
   function handleFileChange(event) {
     setFile(event.target.files[0]);
   }
 
   if(file != null) {
-    
     let fileName = localStorage.getItem("username")+".pdf";
     const bucketName = 'emptotbucket';
 
