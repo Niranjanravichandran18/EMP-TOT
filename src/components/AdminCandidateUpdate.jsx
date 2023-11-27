@@ -9,7 +9,6 @@ import "./css/Signup_module.css"
 
 const AdminCandidateUpdate = () => {
    const navigate = useNavigate("");
-
   const [formData, setFormData] = useState({
     pincode:'',
     aadhaar:''
@@ -23,7 +22,6 @@ const {zipError, aadhaarError}=formError;
 const onChange = e => {
   setFormData({...formData,[e.target.name]:e.target.value})
   setFormError({...formError,zipError:'',aadharError:''})    
-
 }
 const onSubmit = async e => {
   e.preventDefault();
