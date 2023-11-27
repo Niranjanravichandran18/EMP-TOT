@@ -8,7 +8,6 @@ const Table = () => {
   const [searchCandidate, setSearchCandidate] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [candidateDetails,setCandidateDetails] = useState([])
-
   const handleEditButtonClick = () => {
     localStorage.setItem("username", candidateDetails[0].email_id);
     navigate('/AdminCandidateUpdate');
