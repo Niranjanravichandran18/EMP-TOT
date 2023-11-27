@@ -15,7 +15,6 @@ const CandidateUpdate = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-
     axios.post("http://localhost:3001/candidate_update", formData)
       .then((response) => {
         if (response.data === true) {
