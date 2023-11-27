@@ -15,6 +15,7 @@ const Signup = () => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   }
+  
   const handleClickSubmit = (event) => {
     setIsSubmitted(true);
     alert('Your form is submitted');
