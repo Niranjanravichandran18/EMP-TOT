@@ -15,7 +15,6 @@ const App = () => {
         <Route path='/Dashboard' element={<Dashboard />} />
         <Route path='/CandidateUpdate' element={<CandidateUpdate />} />
         <Route path='/AdminCandidateUpdate' element={<AdminCandidateUpdate />} />
- 
       </Routes>
     </>
   )
